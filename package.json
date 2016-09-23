@@ -1,0 +1,34 @@
+{
+  "name": "mhd-awesome.js",
+  "officialName": "mhd-awesome.js",
+  "version": "0.0.1",
+  "description": "An easy function lib for node.js based on native JavaScript driver.",
+  "summary": "from singcl",
+  "author": {
+    "name": "singcl",
+	"url": "https://github.com/singcl"
+  },
+  "license": "MIT",
+  "keywords": [
+    "mhd-awesome.js", 
+	"singcl"
+  ],
+  "main": "dist/mhd-awesome.js",
+  "repository": {
+    "type": "git",
+	"url": "https://github.com/singcl/mhd-awesome"
+  },
+  "bugs": {
+    "url": "https://github.com/singcl/mhd-awesome/issues"
+  },
+  
+  "dependencies": {},
+  "scripts": {
+    "test": "gulp test",
+	"lint": "eslint src/mhd-awesome.js"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
