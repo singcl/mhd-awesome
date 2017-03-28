@@ -359,5 +359,23 @@
         return str.replace(/(\s*$)/g,"");
     }
     window["NameSpace"]["mhd"]["rtrim"] = rtrim;
+
+    //js闭包实现函数的柯里化，无限累加为例
+    function add () {
+        var args = Array.prototype.slice.call(arguments);
+        var fn = function() {
+            var args_fn = Array.prototype.slice.call(arguments);
+            return add.apply(null, args.concat(args_fn));
+        };
+
+        fn.valueOf = function() {
+            return args.reduce(function(previousValue, currentValue) {
+                return previousValue + currentValue;
+            })
+        };
+
+        return fn;
+    }
+    window["NameSpace"]["mhd"]["add"] = add;
 })(window);
 
