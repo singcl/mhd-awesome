@@ -5,8 +5,9 @@
 [![npm](https://img.shields.io/npm/dt/mhd-awesome.svg?style=flat-square)](https://www.npmjs.com/package/mhd-awesome)
 [![npm](https://img.shields.io/npm/l/mhd-awesome.svg?style=flat-square)](https://www.npmjs.com/package/mhd-awesome)
 [![Join the chat at https://gitter.im/singcl/mhd-awesome](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/singcl/mhd-awesome)
-##mhd-awesome
-#1.Usage
+
+> 经常用到的一些辅助函数
+# mhd-awesome
+## 1.Usage
 npm install mhd-awesome
-#2.License
-[![npm](https://img.shields.io/npm/l/mhd-awesome.svg?style=flat-square)](https://www.npmjs.com/package/mhd-awesome)
+## 2.License[![npm](https://img.shields.io/npm/l/mhd-awesome.svg?style=flat-square)](https://www.npmjs.com/package/mhd-awesome)

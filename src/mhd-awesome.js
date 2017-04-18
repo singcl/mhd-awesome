@@ -377,5 +377,30 @@
         return fn;
     }
     window["NameSpace"]["mhd"]["add"] = add;
+
+    //方法一：判断对象是否为空 
+    function isEmptyObject(obj) {
+    	for (var key in obj) {
+    		return false;
+    	} else {
+    		return true;
+    	}
+    }
+
+     window["NameSpace"]["mhd"]["isEmptyObject"] = isEmptyObject;
+
+    //方法二：判断对象是否为空
+    function isNullObject(obj) {
+    	for (var key in obj) {
+    		if (obj.hasOwnProperty(key)) {
+    			return false;
+    		} else {
+    			return true;
+    		}
+    	}
+    }
+
+    window["NameSpace"]["mhd"]["isNullObject"] = isNullObject;
+
 })(window);
 
