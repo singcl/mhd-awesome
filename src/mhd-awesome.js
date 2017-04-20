@@ -382,9 +382,8 @@
     function isEmptyObject(obj) {
     	for (var key in obj) {
     		return false;
-    	} else {
-    		return true;
-    	}
+    	} 
+    	return true;
     }
 
      window["NameSpace"]["mhd"]["isEmptyObject"] = isEmptyObject;
