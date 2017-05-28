@@ -5,7 +5,7 @@
  */
 (function(window,undefined) {
     "use strict";
-   
+
     //向window 对象注册GLOBAL命名空间
     window["NameSpace"] = window["NameSpace"] ? window["NameSpace"] : {};
     //向window.GLOBAL对象注册二级命名空间
@@ -53,7 +53,7 @@
         else {  //IE6及以下
             var xhr = new ActiveXObject("Microsoft.XMLHTTP");
         }
-        
+
         //第三步：接受服务器返回的对象
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
@@ -69,13 +69,13 @@
         //第二步：连接服务器 和 发送请求
         if (options.type == "GET") {
             xhr.open("GET", options.url + "?" + params, true);
-            xhr.send(); 
+            xhr.send();
         }else if (options.type = "POST") {
             xhr.open("POST", options.url, true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.send(params);
         }
-        
+
         //函数声明data格式化函数
         function formatParams(data) {
             var arr = [];
@@ -122,7 +122,7 @@
             }
 
             //向回调函数options.success 传递data参数
-            options.success && options.success(data);    //是逻辑&& 不是逻辑||   
+            options.success && options.success(data);    //是逻辑&& 不是逻辑||
         }
 
         //发送请求 DOM script
@@ -169,7 +169,7 @@
             if (!result[arr[i]]) {
                 newArray.push(arr[i]);
                 result[arr[i]] = 1;
-            } 
+            }
         }
         return newArray;
     }
@@ -254,7 +254,7 @@
        for (var i = 0; i < tempObj.length; i++) {
             if (tempObj[i].nodeType != 1) continue;
             newTempObj.push(tempObj[i]);
-       } 
+       }
        return newTempObj;
     }
 
@@ -344,7 +344,7 @@
     }
     window["NameSpace"]["mhd"]["repeatSix"] = repeatSix;
     //其他剩下的2种方法请百度http://www.tuicool.com/articles/y6neiu
-    
+
     function trim(str) {
         return str.replace(/(^\s*)|(\s*$)/g,"");
     }
@@ -378,11 +378,11 @@
     }
     window["NameSpace"]["mhd"]["add"] = add;
 
-    //方法一：判断对象是否为空 
+    //方法一：判断对象是否为空
     function isEmptyObject(obj) {
     	for (var key in obj) {
     		return false;
-    	} 
+    	}
     	return true;
     }
 
@@ -402,4 +402,3 @@
     window["NameSpace"]["mhd"]["isNullObject"] = isNullObject;
 
 })(window);
-
