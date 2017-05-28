@@ -8,7 +8,7 @@ function showPages(page, total) {
 
         if (page + i < total) {
             str = str + '' +  (page + i);
-        }        
+        }
     }
 
 if (page - 4 > 1) {
@@ -27,6 +27,8 @@ if (page < total) {
     str = str + '' + total + '下一页';
 }
 return str;
+
+
 }
 
 
@@ -34,5 +36,4 @@ var total = 110;
 for (var i = 1; i < total; i++) {
     var ret = showPages(i, total);
     console.log(ret);
-} 
-
+}
