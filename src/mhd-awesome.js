@@ -401,4 +401,45 @@
 
     window["NameSpace"]["mhd"]["isNullObject"] = isNullObject;
 
+    // 随机生成[m, n]之间整数
+    function genRandomInt(m, n) {
+        var w = n - m;
+        return Math.floor(m + Math.random() * (w + 1));
+    }
+    window["NameSpace"]["mhd"]["genRandomInt"] = genRandomInt;
+
+    // 不重复的随机数方案一
+    function randomIntNoRepeat(count) {
+        var res = [];
+        var original = new Array();//原始数组 
+        //给原始数组original赋值 
+        for (var i = 0;i < count; i++){ 
+            original[i] = i + 1; 
+        } 
+        var d1 = new Date().getTime();
+        for (var num, i = 0;i < count; i++){ 
+            do { 
+                num = Math.floor(Math.random() * count); 
+            } while(original[num] == null); 
+            res.push(original[num]);
+            original[num] = null; 
+        } 
+        var d2 = new Date().getTime();
+        console.log("运算耗时"+ (d2 - d1));
+        return res;
+    }
+
+    // 不重复的随机数方案二
+    function randomIntNoRepeat2(count) {
+        var original = new Array();//原始数组 
+        //给原始数组original赋值 
+        for (var i = 0;i < count; i++){ 
+            original[i] = i + 1; 
+        } 
+        var d1 = new Date().getTime();
+        original.sort(function(){ return 0.5 - Math.random(); }); 
+        var d2=new Date().getTime();
+        console.log("运算耗时"+ (d2 - d1));
+        return original;
+    }
 })(window);

@@ -27,6 +27,7 @@
     "lint": "eslint src/mhd-awesome.js"
   },
   "devDependencies": {
+    "eslint": "^4.11.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1"
   },

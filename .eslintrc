@@ -1,13 +1,9 @@
 {
   "extends": "eslint:recommended",
-  "plugins": ["angular"],
+  "plugins": [],
   "env": {
     "browser": true,
-    "jasmine": true
+    "node": true
   },
-  "globals": {
-    "angular": true,
-    "module": true,
-    "inject": true
-  }
+  "globals": {}
 }
