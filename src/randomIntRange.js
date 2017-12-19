@@ -1,4 +1,11 @@
 /**
+ * 随机数生成相关小函数
+ * @authors singcl (24661881@qq.com)
+ * @date    2017-12-19 13:56:08
+ * @version 1.0.0
+ */
+
+/**
  * 底层基本函数：随机产生[min, max]区间的整数
  * @param  {Number} min 最小整数
  * @param  {Numer} max 最大整数

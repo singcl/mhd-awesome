@@ -1,8 +1,8 @@
 /**
- * 
- * @authors Your Name (you@example.org)
+ * j参考JQUERY源码中参数对象序列化化为url查询字符串
+ * @authors sincl (24661881@qq.com)
  * @date    2017-11-02 22:25:18
- * @version $Id$
+ * @version 1.0.0
  */
 var r20 = /%20/g;
 var rbracket = /\[\]$/;
@@ -21,9 +21,9 @@ tools.param = function(a, traditional) {
         s = [],
         add = function(key, value) {
             // If value is a function, invoke it and return its value
-            value = tools.isFunction(value)
-                ? value()
-                : value == null ? '' : value;
+            value = tools.isFunction(value) ?
+                value() :
+                value == null ? '' : value;
             s[s.length] =
                 encodeURIComponent(key) + '=' + encodeURIComponent(value);
         };

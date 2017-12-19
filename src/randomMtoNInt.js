@@ -1,5 +1,4 @@
 /**
- * 
  * @authors Your Name (you@example.org)
  * @date    2017-12-18 23:00:21
  * @version $Id$
@@ -17,19 +16,19 @@
 
 // 函数功能：生成[n,m]的随机整数。
 //生成从minNum到maxNum的随机数
-function randomNum(minNum,maxNum){ 
-    switch(arguments.length){ 
-        case 1: 
-            return parseInt(Math.random()*minNum+1,10); 
-        break; 
-        case 2: 
-            return parseInt(Math.random()*(maxNum-minNum+1)+minNum,10); 
-        break; 
-            default: 
-                return 0; 
-            break; 
-    } 
-} 
+function randomNum(minNum, maxNum) {
+    switch (arguments.length) {
+        case 1:
+            return parseInt(Math.random() * minNum + 1, 10);
+            // break; 
+        case 2:
+            return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+            // break; 
+        default:
+            return 0;
+            // break; 
+    }
+}
 
 // Math.random()生成[0,1)的数，所以
 // Math.random()*5生成{0,5)的数。
@@ -40,17 +39,22 @@ function randomNum(minNum,maxNum){
 
 // 所以生成[1,max]的随机数，公式如下：
 // max - 期望的最大值
-parseInt(Math.random()*max,10)+1;
-Math.floor(Math.random()*max)+1;
-Math.ceil(Math.random()*max);
+var max;
+var min;
+parseInt(Math.random() * max, 10) + 1;
+Math.floor(Math.random() * max) + 1;
+Math.ceil(Math.random() * max);
 
 // 所以生成[0,max]到任意数的随机数，公式如下：
 // max - 期望的最大值
-parseInt(Math.random()*(max+1),10);
-Math.floor(Math.random()*(max+1));
+parseInt(Math.random() * (max + 1), 10);
+Math.floor(Math.random() * (max + 1));
 
 // 所以希望生成[min,max]的随机数，公式如下：
 // max - 期望的最大值
 // min - 期望的最小值
-parseInt(Math.random()*(max-min+1)+min,10);
-Math.floor(Math.random()*(max-min+1)+min);
+parseInt(Math.random() * (max - min + 1) + min, 10);
+Math.floor(Math.random() * (max - min + 1) + min);
+
+//
+exports.randomNum = randomNum;
