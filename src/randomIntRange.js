@@ -97,16 +97,29 @@ function randomIntRange(n, min, max) {
 	// }
 
 	// 核心逻辑代码实现：方法三
-	while (res.length < nx) {
+	// while (res.length < nx) {
+	// 	random = randomInt(minx, maxx);
+	// 	if (res.indexOf(random) === -1) res.push(random);
+	// 	// 或者是
+	// 	// if (res.every(function(item) {
+	// 	// 		return item !== random;
+	// 	// 	})) {
+	// 	// 	res.push(random);
+	// 	// }
+	// }
+
+	// 核心逻辑代码实现：方法四
+	for (var i = 0; i < nx; i++) {
 		random = randomInt(minx, maxx);
-		if (res.indexOf(random) === -1) res.push(random);
-		// 或者是
-		// if (res.every(function(item) {
-		// 		return item !== random;
-		// 	})) {
-		// 	res.push(random);
-		// }
+		if (res.indexOf(random) !== -1) {
+			i--
+		} else {
+			res.push(random);
+		}
 	}
+
+	// 核心逻辑代码实现五思路:先生成一个数组,再从数组中取数，取走的用null占位。
+	// 核心逻辑代码实现六思路:先生成一个数组,再sort(function() {return 0.5 - Math.random()});
 
 	return res;
 }
