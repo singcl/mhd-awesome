@@ -4,9 +4,9 @@
 
 ![右键效果图](./images/add-right.png)
 
-安装 Sublime Text 3 鼠标右键菜单中没有“Open with Sublime Text”的选项，本着自己动手，丰衣足食的优良传统，决定自己动手添加。具体步骤如下：
+安装 Sublime Text 3 鼠标右键菜单中没有“Open with Sublime Text3”的选项, 在文件或者文件中直接打开 sublimeText3 很不方便。添加到右键菜单的具体方法如下：
 
-## 文件右键菜单添加“Open with Sublime”
+## 文件右键菜单添加“Open with Sublime3”
 
 * 1、win+R 打开运行，并输入 regedit，打开注册表;
 * 2、在左侧列表中依次打开\HKEY_CLASSES_ROOT\*\shell\;
@@ -14,7 +14,7 @@
 * 4、在 Subline 下新建字符串值 Icon,将数值写改为“D:\Program Files\Sublime Text 3\sublime_text.exe,0”;
 * 5、在 Sulime 下新建项 Command，将默认值修改为“D:\Program Files\Sublime Text 3\sublime_text.exe,%1”;
 
-## 文件夹右键菜单添加“Open with Sublime”
+## 文件夹右键菜单添加“Open with Sublime3”
 
 * 1、win+R 打开运行，并输入 regedit，打开注册表；
 * 2、在左侧列表中依次打开\HKEY_CLASSES_ROOT\Directory\shell\；
@@ -52,4 +52,4 @@ Windows Registry Editor Version 5.00
 ```
 
 * 3、双加执行，然后右键就会有 open with sublime 选项了。
-* **注意：将代码中的 C:\\Program Files 路径替换成你的 sublime 的安装路径**
+* **注意：将代码中的 C:\\\Program Files 路径替换成你的 sublime 的安装路径**
