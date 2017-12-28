@@ -7,7 +7,7 @@
 
 **至此发布流程完成。请到https://www.npmjs.com搜索刚刚发布的包**
 
-###相关操作
+### 相关操作
 * 查看模块拥有者:`npm owner ls <package_name>`
 * 添加一个发布者:`npm owner add <user> <package_name>`
 * 删除一个发布者:`npm owner rm <user> <package_name>`
