@@ -1,3 +1,4 @@
+[cSpell checker disable]: <> (/* cSpell: disable */)
 ## 我的vscodeIDE user-settings：
 ```js
 {

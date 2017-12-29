@@ -216,4 +216,4 @@ module.exports = {
 解决了这个问题之后，我们终于可以放心的使用 vue-router 提供的 [Lazy Loading Routes ](https://router.vuejs.org/en/advanced/lazy-loading.html)功能了。想象一下，如果你只改变了其中一个异步加载的路由里的代码，那么只有这个异步加载的文件的 hash 会改变，所以项目下次上线时，浏览器仍然会直接从缓存里读取其他文件，首次加载时间完全不会受到影响。
 
 **最后，我们提供了一个[最小示例项目](https://github.com/lmk123/webpack-stable-hash-example)用来展示这个解决方案，你可以基于这个项目调整你的 Webpack 配置并检查 hash 的变化。**
-**或者使用vue-cli脚手架vue init webpack [your project name]生成项目后查看webpck.prod.conf.js里面的plugins配置**
+**或者使用vue-cli脚手架vue init webpack [your project name]生成项目后查看webpack.prod.conf.js 里面的plugins配置**
