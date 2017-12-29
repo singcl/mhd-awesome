@@ -27,7 +27,8 @@
   },
   "scripts": {
     "test": "karma start --single-run --browsers PhantomJS",
-    "lint": "eslint src/mhd-awesome.js"
+    "lint": "eslint src/mhd-awesome.js",
+    "cov": "cat ./coverage/lcov/lcov.info | ./node_modules/.bin/coveralls"
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
