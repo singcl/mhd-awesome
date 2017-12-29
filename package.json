@@ -30,16 +30,17 @@
     "lint": "eslint src/mhd-awesome.js"
   },
   "devDependencies": {
+    "coveralls": "^3.0.0",
     "eslint": "^4.14.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
     "jasmine-core": "^2.8.0",
     "karma": "^2.0.0",
     "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.1",
     "karma-firefox-launcher": "^1.1.0",
     "karma-jasmine": "^1.1.1",
-    "karma-phantomjs-launcher": "^1.0.4",
-    "karma-coverage": "^1.1.1"
+    "karma-phantomjs-launcher": "^1.0.4"
   },
   "engines": {
     "node": ">=0.10.0"

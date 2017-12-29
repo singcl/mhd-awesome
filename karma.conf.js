@@ -1,5 +1,6 @@
 // Karma configuration
 // Generated on Fri Dec 29 2017 12:33:32 GMT+0800 (中国标准时间)
+const path = require('path')
 
 module.exports = function(config) {
     config.set({
@@ -29,8 +30,11 @@ module.exports = function(config) {
 
         // optionally, configure the reporter
         coverageReporter: {
-          type: 'html',
-          dir: 'coverage/'
+            dir: path.join(__dirname, 'coverage'),
+            reporters: [
+                {type: 'html'},
+                {type: 'lcov', subdir: 'lcov'}  // lcov
+            ]
         },
 
         // test results reporter to use

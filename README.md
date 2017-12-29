@@ -4,6 +4,7 @@
 [![node](https://img.shields.io/node/v/mhd-awesome/latest.svg)](https://www.npmjs.com/package/mhd-awesome)
 [![npm](https://img.shields.io/npm/v/mhd-awesome.svg?style=flat-square)](https://www.npmjs.com/package/mhd-awesome)
 [![npm](https://img.shields.io/npm/dt/mhd-awesome.svg?style=flat-square)](https://www.npmjs.com/package/mhd-awesome)
+[![Coverage Status](https://coveralls.io/repos/github/singcl/mhd-awesome/badge.svg)](https://coveralls.io/github/singcl/mhd-awesome)
 ---
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-6f42c1.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Join the chat at https://gitter.im/singcl/mhd-awesome](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/singcl/mhd-awesome)
