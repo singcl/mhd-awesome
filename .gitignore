@@ -13,3 +13,4 @@ $RECYCLE.BIN/
 bower_components
 dist
 node_modules
+coverage
