@@ -11,5 +11,4 @@ describe("main.js", function() {
         expect(false).toEqual(isInteger("20"));
         expect(false).toEqual(isInteger(0));
     })
-
 });

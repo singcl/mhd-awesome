@@ -22,8 +22,6 @@
 ### License MIT
 [![npm][mhd-awesome-lic-badge]][mhd-awesome-url]
 
-[注释]: <> (badge and url 集合)
-
 [mhd-awesome-url]: https://www.npmjs.com/package/mhd-awesome
 [mhd-awesome-travis-badge]: https://img.shields.io/travis/singcl/mhd-awesome.svg?style=flat-square
 [mhd-awesome-travis-url]: https://travis-ci.org/singcl/mhd-awesome
