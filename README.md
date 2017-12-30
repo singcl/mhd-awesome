@@ -1,5 +1,5 @@
 [![Travis][mhd-awesome-travis-badge]][mhd-awesome-travis-url]
-[![Coverage Status][mhd-awesome-coverage-badge]][mhd-awesome-coverage-url]
+[![Coverage Status][mhd-awesome-coverage-badge2]][mhd-awesome-coverage-url]
 [![npm-download][mhd-awesome-dt-badge]][mhd-awesome-url]
 [![node][mhd-awesome-node-badge]][mhd-awesome-url]
 [![npm][mhd-awesome-npm-badge]][mhd-awesome-url]
@@ -33,6 +33,7 @@
 [mhd-awesome-npm-badge]: https://img.shields.io/npm/v/mhd-awesome.svg?style=flat-square
 [mhd-awesome-dt-badge]:https://img.shields.io/npm/dt/mhd-awesome.svg?style=flat-square
 [mhd-awesome-coverage-badge]: https://coveralls.io/repos/github/singcl/mhd-awesome/badge.svg
+[mhd-awesome-coverage-badge2]: https://img.shields.io/coveralls/github/singcl/mhd-awesome/master.svg?style=flat-square
 [mhd-awesome-coverage-url]: https://coveralls.io/github/singcl/mhd-awesome
 [mhd-awesome-prettier-badge]: https://img.shields.io/badge/code_style-prettier-6f42c1.svg?style=flat-square
 [mhd-awesome-prettier-url]: https://github.com/prettier/prettier
