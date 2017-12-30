@@ -29,7 +29,7 @@
 [mhd-awesome-dep-url]: https://david-dm.org/singcl/mhd-awesome#info=Dependencies
 [mhd-awesome-devdep-badge]: https://david-dm.org/singcl/mhd-awesome/dev-status.svg?style=flat-square
 [mhd-awesome-devdep-url]: https://david-dm.org/singcl/mhd-awesome#info=devDependencies
-[mhd-awesome-node-badge]: https://img.shields.io/node/v/mhd-awesome/latest.svg
+[mhd-awesome-node-badge]: https://img.shields.io/node/v/mhd-awesome/latest.svg?style=flat-square
 [mhd-awesome-npm-badge]: https://img.shields.io/npm/v/mhd-awesome.svg?style=flat-square
 [mhd-awesome-dt-badge]:https://img.shields.io/npm/dt/mhd-awesome.svg?style=flat-square
 [mhd-awesome-coverage-badge]: https://coveralls.io/repos/github/singcl/mhd-awesome/badge.svg
