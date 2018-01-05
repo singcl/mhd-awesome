@@ -1,4 +1,5 @@
 [![Travis][mhd-awesome-travis-badge]][mhd-awesome-travis-url]
+[![appveyor][mhd-awesome-appveyor-badge]][mhd-awesome-url]
 [![Coverage Status][mhd-awesome-coverage-badge2]][mhd-awesome-coverage-url]
 [![npm-download][mhd-awesome-dt-badge]][mhd-awesome-url]
 [![node][mhd-awesome-node-badge]][mhd-awesome-url]
@@ -40,3 +41,4 @@
 [mhd-awesome-chat-badge]: https://badges.gitter.im/Join%20Chat.svg
 [mhd-awesome-chat-url]: https://gitter.im/singcl/mhd-awesome
 [mhd-awesome-lic-badge]: https://img.shields.io/npm/l/mhd-awesome.svg?style=flat-square
+[mhd-awesome-appveyor-badge]: https://ci.appveyor.com/api/projects/status/github/singcl/mhd-awesome?branch=master&svg=true
