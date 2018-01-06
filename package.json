@@ -29,9 +29,11 @@
     "test": "karma start --single-run --browsers PhantomJS",
     "lint": "eslint src/mhd-awesome.js",
     "cov": "cat ./coverage/lcov/lcov.info | coveralls",
-    "covv": "./node_modules/.bin/coveralls"
+    "covv": "./node_modules/.bin/coveralls",
+    "bithound": "bithound check git@github.com:singcl/mhd-awesome.git"
   },
   "devDependencies": {
+    "bithound": "^1.7.0",
     "coveralls": "^3.0.0",
     "eslint": "^4.14.0",
     "gulp": "^3.9.1",

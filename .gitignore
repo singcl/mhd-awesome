@@ -15,3 +15,4 @@ dist
 node_modules
 coverage
 package-lock.json
+npm-debug.log
