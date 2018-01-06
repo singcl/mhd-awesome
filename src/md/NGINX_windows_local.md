@@ -5,7 +5,7 @@ nginx功能之一可以启动一个本地服务器，通过配置server_name和r
 *nginx下载地址：http://nginx.org/*
 
 * **注意不要直接双击nginx.exe，这样会导致修改配置后重启、停止nginx无效，需要手动关闭任务管理器内的所有nginx进程**
- 
+
 * 1、在nginx.exe目录，打开命令行工具，用命令启动/关闭/重启nginx 
 * 启动命令如下：
  * start nginx : 启动nginx
@@ -21,9 +21,9 @@ nginx功能之一可以启动一个本地服务器，通过配置server_name和r
 ---
 * 启动失败错误分析：
  * 1、bash: nginx: command not found
- 有可能是你再linux命令行环境下运行了windows命令，如果你之前是允许 nginx -s reload报错， 试下 ./nginx -s reload或者用windows系统自带命令行工具运行
+    有可能是你再linux命令行环境下运行了windows命令，如果你之前是允许 nginx -s reload报错， 试下 ./nginx -s reload或者用windows系统自带命令行工具运行
  * 2、如果发现进程中并没有NGINX进程，那么说明你安装失败，你可以到你的Nginx安装目录下的logs文件夹下查看error文件。如果发现里面写着：
- 
+
  `2017/12/20 19:33:31 [emerg] 11936#9452: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)`
 
 说明你的80端口被占用了，或是cmd命令进入dos下执行：netstat -aon | findstr :80 查看80端口是否被占用，如果占用，那么你需要修改注册表或者修改conf配置文件。
