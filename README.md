@@ -9,6 +9,10 @@
 [![Dependency Status][mhd-awesome-dep-badge]][mhd-awesome-dep-url]
 [![devDependency Status][mhd-awesome-devdep-badge]][mhd-awesome-devdep-url]
 [![Join the chat][mhd-awesome-chat-badge]][mhd-awesome-chat-url]
+[![bitHound Overall Score](https://www.bithound.io/github/singcl/mhd-awesome/badges/score.svg)](https://www.bithound.io/github/singcl/mhd-awesome)
+[![bitHound Dependencies](https://www.bithound.io/github/singcl/mhd-awesome/badges/dependencies.svg)](https://www.bithound.io/github/singcl/mhd-awesome/master/dependencies/npm)
+[![bitHound Dev Dependencies](https://www.bithound.io/github/singcl/mhd-awesome/badges/devDependencies.svg)](https://www.bithound.io/github/singcl/mhd-awesome/master/dependencies/npm)
+[![bitHound Code](https://www.bithound.io/github/singcl/mhd-awesome/badges/code.svg)](https://www.bithound.io/github/singcl/mhd-awesome)
 # mhd-awesome
 
 > * **常用的一些辅助函数**

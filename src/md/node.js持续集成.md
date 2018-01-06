@@ -3,6 +3,7 @@ TravisCI: https://travis-ci.org/
 CircleCI: https://circleci.com/
 Appveyor: https://www.appveyor.com/
 bithound: https://www.bithound.io/add/github/singcl
+slack: https://singcl.slack.com/
 
 status badge website: https://shields.io/
 
