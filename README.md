@@ -21,7 +21,8 @@
 > * **常用的一些工具库/开发工具库**
 
 ### SINGCL的其他项目：
-* **[React从入门到放弃](https://gitee.com/singcl/mhd-react)**
+* **[React从入门到放弃(GITHUB)](https://github.com/singcl/mhd-react)**
+* **[React从入门到放弃(GITEE)](https://gitee.com/singcl/mhd-react)**
 * **[React + Webpack项目基本示例](https://github.com/singcl/react-base-app)**
 ### 安装使用
 **`npm install mhd-awesome`**
