@@ -14,7 +14,7 @@
 [![bitHound Dependencies](https://www.bithound.io/github/singcl/mhd-awesome/badges/dependencies.svg)](https://www.bithound.io/github/singcl/mhd-awesome/master/dependencies/npm)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/singcl/mhd-awesome/badges/devDependencies.svg)](https://www.bithound.io/github/singcl/mhd-awesome/master/dependencies/npm)
 
-# mhd-awesome
+# mhd-awesome🎉
 
 > * **常用的一些辅助函数**
 > * **常用的一些技术问题解决方案**
