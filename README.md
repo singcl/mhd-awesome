@@ -28,6 +28,7 @@
 **`npm install mhd-awesome`**
 ### License MIT
 [![npm][mhd-awesome-lic-badge]][mhd-awesome-url]
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsingcl%2Fmhd-awesome.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fsingcl%2Fmhd-awesome?ref=badge_shield)
 
 [mhd-awesome-url]: https://www.npmjs.com/package/mhd-awesome
 [mhd-awesome-travis-badge]: https://img.shields.io/travis/singcl/mhd-awesome.svg?style=flat-square
@@ -48,3 +49,6 @@
 [mhd-awesome-chat-url]: https://gitter.im/singcl/mhd-awesome
 [mhd-awesome-lic-badge]: https://img.shields.io/npm/l/mhd-awesome.svg?style=flat-square
 [mhd-awesome-appveyor-badge]: https://ci.appveyor.com/api/projects/status/github/singcl/mhd-awesome?branch=master&svg=true
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsingcl%2Fmhd-awesome.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fsingcl%2Fmhd-awesome?ref=badge_large)
