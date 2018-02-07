@@ -14,3 +14,13 @@
 * 查看当前项目引用了哪些包 `npm ls`
 * `npm unpublish`这个命令有的仓储支持，有的仓储不支持。npmjs.org早期也是支持的，但2015年后已经声明过不支持删除已经发布的包，详见`npm issue`。类似情况推荐使用命令`npm deprecate` 2016有一个大牛的删库事件导致很多依赖它的著名的npm包构建失败，甚至影响到了不少公司的生产环境。从那时候开始npm就更改了unpublish的策略。
 没记错的话好像是半小时内你可以删除自己发布的库，之后你就再也不能删除了。详细内容可以上npm官网看它们的blog。
+
+### 带有命名空间的NPM包
+有些时候需要创建一个公司内部使用的模块，或者某个模块已经有了同名的模块存在，这个时候可以用到带有命名空间的模块，其名称形如 `@scope/project`，在 `npm` 上面带有命名空间的模块默认是私有的，而且每个用户有一个属于自己的命名空间也就是 `@username`，在 `npm` 上私有的模块是要付费的，因此为了免费地发布一个带有命名空间的模块，需要将该模块设置为公开的，只需要在执行 publish 的时候加上 --access=public 选项即可。
+
+在安装这些带有命名空间的模块的时候需要这样安装 `npm install @scope/project --save`，在项目中引用的时候也要带上 `scope`，`require('@scope/project')`。
+
+### 使用 tag
+`npm` 也允许开发着给某个版本打 `tag`，比如当版本进行到 `1.0.9` 的时候可以给他打个 `tag` 叫做 `beta`，这个时候用户可以使用 `npm i project-name@beta` 来安装这个版本，这等价于 `npm i project@1.0.9`
+
+使用 `npm dist-tag add <package>@<version> tag` 来给某个版本打 `tag`，默认情况下载 `npm publish` 的时候 `npm` 会给当前版本打一个` tag` 叫做 `latest`，表示这是最新的，可以使用 `npm publish --tag <tag-name>` 来改变默认的 `tag`。
