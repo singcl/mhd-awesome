@@ -76,48 +76,56 @@ console.log(1 >> 1)     // 0
 ```js
 // 偶数 & 1 = 0
 // 奇数 & 1 = 1
-console.log(0 & 1)    // 0
+console.log(2 & 1)    // 0
 console.log(3 & 1)    // 1
 ```
 2. 使用`~, >>, <<, >>>, |`来取整
 ```js
-console.log(~~ 3.14)    // 3
-console.log(3.14 >> 0)  // 3
-console.log(3.14 << 0)  // 3
-console.log(3.14 | 0)   // 3
+console.log(~~ 6.83)    // 6
+console.log(6.83 >> 0)  // 6
+console.log(6.83 << 0)  // 6
+console.log(6.83 | 0)   // 6
 // >>>不可对负数取整
-console.log(3.14 >>> 0)   // 3
+console.log(6.83 >>> 0)   // 6
 ```
 3. 使用`^`来完成值交换
 ```js
-var a = 1
-var b = 2
+var a = 5
+var b = 8
 a ^= b
 b ^= a
 a ^= b
-console.log(a)   // 2
-console.log(b)   // 1
+console.log(a)   // 8
+console.log(b)   // 5
 ```
 4. 使用`&, >>, |`来完成rgb值和16进制颜色值之间的转换
 ```js
-// 16进制颜色值转RGB：
-function hexToRGB(hex){
-    var hex = hex.replace("#","0x"),
-        r = hex >> 16,
-        g = hex >> 8 & 0xff,
-        b = hex & 0xff;
-    return "rgb("+r+","+g+","+b+")";
+/**
+ * 16进制颜色值转RGB
+ * @param  {String} hex 16进制颜色字符串
+ * @return {String}     RGB颜色字符串
+ */
+  function hexToRGB(hex) {
+    var hexx = hex.replace('#', '0x')
+    var r = hexx >> 16
+    var g = hexx >> 8 & 0xff
+    var b = hexx & 0xff
+    return `rgb(${r}, ${g}, ${b})`
 }
 
-// RGB转16进制颜色值：
-function RGBToHex(rgb){
-    var rgbArr = rgb.split(/[^\d]+/),
-        color = rgbArr[1]<<16 | rgbArr[2]<<8 | rgbArr[3];
-    return "#"+color.toString(16);
+/**
+ * RGB颜色转16进制颜色
+ * @param  {String} rgb RGB进制颜色字符串
+ * @return {String}     16进制颜色字符串
+ */
+function RGBToHex(rgb) {
+    var rgbArr = rgb.split(/[^\d]+/)
+    var color = rgbArr[1]<<16 | rgbArr[2]<<8 | rgbArr[3]
+    return '#'+ color.toString(16)
 }
 // -------------------------------------------------
-hexToRGB("#ffffff")               // "rgb(255,255,255)"
-RGBToHex("rgb(255,255,255)")      // "#ffffff"
+hexToRGB('#ffffff')               // 'rgb(255,255,255)'
+RGBToHex('rgb(255,255,255)')      // '#ffffff'
 ```
 ## 参考
 1. https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators
