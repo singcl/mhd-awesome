@@ -24,7 +24,7 @@ function Cat(color, name) {
     }
 }
 
-(function() {
+(function(Cat) {
     // 创建一个没有实例的方法
     var Super = function() {}
     Super.prototype = Animal.prototype
@@ -32,11 +32,11 @@ function Cat(color, name) {
     Cat.prototype = new Super()
     // 修复Cat构造器指向
     Cat.prototype.constructor = Cat
-})()
-
-Cat.prototype.climb = function(arg) {
-    console.log('快看！快看！颜色为' + this.color + '的' + this.name + '正在爬' + arg)
-}
+    // 自己的原型属性/方法
+    Cat.prototype.climb = function(arg) {
+        console.log('快看！快看！颜色为' + this.color + '的' + this.name + '正在爬' + arg)
+    }
+})(Cat)
 
 // Test Code
 var cat = new Cat('RED', 'cat')
