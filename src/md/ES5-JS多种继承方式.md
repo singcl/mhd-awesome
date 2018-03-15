@@ -1,6 +1,6 @@
 ### JS继承的实现
 JS中**继承**是一个老生常谈的问题，但是依然还是有很多朋友可能不是很明白。本文就详细剖析ES6之前JS继承的常见实现方式。
-ES6的继承实现不在本文讨论范围内，有兴趣的朋友可以去看看阮一峰的:[Class继承](http://es6.ruanyifeng.com/#docs/class-extends)
+ES6的继不在本文讨论范围内，有兴趣的朋友可以去看看阮一峰的:[Class继承](http://es6.ruanyifeng.com/#docs/class-extends)
 
 既然要实现继承，那么首先创建一个父类
 ```js
@@ -9,7 +9,7 @@ function Animal(name) {
     // 实例属性
     this.name = name || 'Animal'
     // 实例方法
-    this. sleep = function() {
+    this.sleep = function() {
         console.log(this.name + '正在睡觉！')
     }
 }
@@ -19,8 +19,9 @@ Animal.prototype.eat = function(food) {
     console.log(this.name + '正在吃' + food)
 }
 ```
+好了，父类创建好了。现在我们就来用一下5中方式实现继承，同时说说每种实现方式的优缺点。
 #### 1. 原型链继承
-**核心**：将父类的实例作为子类的原型
+**核心**：将父类的实例作为子类的原型对象
 ```js
 function Cat(color) {
     // 实例属性
@@ -146,7 +147,7 @@ console.log(cat instanceof Animal)          // true
 console.log(cat instanceof Cat)             // false
 ```
 **特点:**
-1. 不限制调用方式，不管是new Cat()还是Cat(),返回的对象具有相同的效果(优点工厂函数的味道)
+1. 不限制调用方式，不管是new Cat()还是Cat(),返回的对象具有相同的效果(有点工厂函数的味道)
 2. 创建子类实例时，可以向父类传递参数
 3. 实例是父类的实例，不只是子类的实例
 4. 无法继承子类原型属性/方法
