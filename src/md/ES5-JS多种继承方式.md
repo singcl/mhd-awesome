@@ -41,7 +41,7 @@ Cat.prototype.climb = function(arg) {
     console.log('快看！快看！颜色为' + this.color + '的' + this.name + '正在爬' + arg)
 }
 
-//　Test Code
+// ==============================TEST=================================================
 var cat = new Cat('RED')
 // 继承的name属性被自定义的name属性替代
 console.log(cat.name)                       // cat
@@ -84,7 +84,7 @@ Cat.prototype.climb = function(arg) {
     console.log('快看！快看！颜色为' + this.color + '的' + this.name + '正在爬' + arg)
 }
 
-//　Test Code
+// ==============================TEST=================================================
 var cat = new Cat('RED', 'cat')
 // 继承的name属性被自定义的name属性替代
 console.log(cat.name)                       // cat
@@ -132,7 +132,7 @@ Cat.prototype.climb = function(arg) {
     console.log('快看！快看！颜色为' + this.color + '的' + this.name + '正在爬' + arg)
 }
 
-//　Test Code
+// ==============================TEST=================================================
 var cat = new Cat('RED', 'cat')
 // 继承的name属性被自定义的name属性替代
 console.log(cat.name)                       // cat
@@ -174,7 +174,7 @@ Cat.prototype.climb = function(arg) {
     console.log('快看！快看！颜色为' + this.color + '的' + this.name + '正在爬' + arg)
 }
 
-//　Test Code
+// ==============================TEST=================================================
 var cat = new Cat('RED', 'cat')
 // 继承的name属性被自定义的name属性替代
 console.log(cat.name)                       // cat
@@ -232,7 +232,7 @@ function Cat(color, name) {
     }
 })(Cat)
 
-//　Test Code
+// ==============================TEST=================================================
 var cat = new Cat('RED', 'cat')
 // 继承的name属性被自定义的name属性替代
 console.log(cat.name)                       // cat
