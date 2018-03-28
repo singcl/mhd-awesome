@@ -30,4 +30,5 @@ db.version()
 # 查看当前链接机器的IP
 db.getMongo()
 ```
+![mongodb](../img/mongo.jpg)
 由于mongoDB支持js 所有可以直接在客户端shell中敲js代码
