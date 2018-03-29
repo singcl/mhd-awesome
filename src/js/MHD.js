@@ -58,6 +58,17 @@ MHD.prototype.forEach = function(callback, thisArg) {
     k++
 }
 
+// MHD类的静态方法
+/**
+ * 浏览器-UUID生成器
+ * 浏览器环境使用crypto API生成符合RFC4122版本4的UUID，该方法不适合node环境。node环境可参照：https://github.com/kelektiv/node-uuid
+ * @see https://developer.mozilla.org/zh-CN/docs/Web/API/RandomSource/getRandomValues 浏览器环境crypto API:
+ * @see http://nodejs.cn/api/crypto.html nodejs crypto API
+ * @example
+ * uuid()  // '7982fcfe-5721-4632-bede-6000885be57d'
+ */
+MHD.uuid = () => ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16))
+
 // MHD模块
 // 先整体导出这个类， 后续优化导出为类的实例
 module.exports = MHD
