@@ -57,7 +57,8 @@ Mhd.prototype.forEach = function(callback, thisArg) {
         if (k in O) {
             kValue = O[k]
         }
-        callback.call(T, kValue, k, O)
+        var r = callback.call(T, kValue, k, O)
+        if (r === false) break
         k++
     }
 }
