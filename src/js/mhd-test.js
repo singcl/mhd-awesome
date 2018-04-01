@@ -1,7 +1,8 @@
 var Mhd = require('./Mhd')
-var mhd = new Mhd([2,1,234442])
+var mhd = new Mhd([2,1,234442, 'sfsdf','111sss111'])
 mhd.forEach((element) => {
     console.log(element)
+    if (element === 'sfsdf') return false
 });
 
 // each 方法实现基本原理
@@ -20,6 +21,6 @@ function each(arr, callback) {
 }
 
 each([3,4,5,6], function(item) {
-    console.log(item)
-    if (item === 3) return false
+    console.log('------------------',item)
+    if (item === 5) return false
 })
