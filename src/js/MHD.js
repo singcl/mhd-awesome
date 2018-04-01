@@ -5,13 +5,9 @@
  */
 function Mhd() {
     var len = arguments.length
-    this.length = len
-
-    var i = len - 1
-    while( i >= 0 ) {
-        this[i] = arguments[i]
-        i--
-    }
+    len === 1 && isArray(arguments[0])
+        ? AddProperty.call(this, arguments[0])
+        : AddProperty.call(this, arguments)
 }
 
 // Mhd 原型方法
@@ -76,6 +72,33 @@ Mhd.prototype.forEach = function(callback, thisArg) {
  * uuid()  // '7982fcfe-5721-4632-bede-6000885be57d'
  */
 Mhd.uuid = () => ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16))
+
+/**
+ * 给Mhd实例添加实例属性的函数
+ * 写在构造函数外部，以 call 的方式调用私有方法。还可以以symbol的形式写在原型上表示私有方法
+ * @param {Object} m 数组或者伪数组
+ * @this Mhd实例
+ */
+function AddProperty(m) {
+    if (typeof m !== 'object') throw new TypeError('m must be a object!')
+    var len = m.length >>> 0
+
+    this.length = len
+    var i = len - 1
+    while( i >= 0 ) {
+        this[i] = m[i]
+        i--
+    }
+}
+
+/**
+ * 判断传入的对象是不是数组
+ * @param {Any} m 要判断对象
+ * @returns true|false
+ */
+function isArray(m) {
+    return Object.prototype.toString.call(m) === '[object Array]'
+}
 
 // Mhd模块
 // 先整体导出这个类， 后续优化导出为类的实例
