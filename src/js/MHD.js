@@ -1,28 +1,32 @@
 /**
- * 自定义MHD 类
- * @constructor HMD
+ * 自定义Mhd 类 实例是一个Array-like对象
+ * @param {String|Number|Boolean|Null|Undefined|Symbol}  原始数据类型优先
+ * @constructor Mhd
  */
-function MHD() {
-    //
+function Mhd() {
+    var len = arguments.length
+    len === 1 && isArray(arguments[0])
+        ? AddProperty.call(this, arguments[0])
+        : AddProperty.call(this, arguments)
 }
 
-// MHD 原型方法
+// Mhd 原型方法
 
 /**
  * 数组/对象的forEachF方法
  * @param {Object=}     thisArg             callback 回调函数中 this 上下文
- * @param {MHD~forEachCallback} callback    forEach的回调函数
+ * @param {Mhd~forEachCallback} callback    forEach的回调函数
  */
 
 /**
- * This callback is displayed as part of the MHD class.
- * @callback MHD~forEachCallback
+ * This callback is displayed as part of the Mhd class.
+ * @callback Mhd~forEachCallback
  * @param {String|Object}   kValue          回调函数第一个参数value
  * @param {string}          k               当前索引index
  * @param {string}          O               当前递归的数组
  * @this  {Object}          thisArg
  */
-MHD.prototype.forEach = function(callback, thisArg) {
+Mhd.prototype.forEach = function(callback, thisArg) {
     var T, k
     if (this === null) {
         throw new TypeError('this is null or not defined')
@@ -53,12 +57,13 @@ MHD.prototype.forEach = function(callback, thisArg) {
         if (k in O) {
             kValue = O[k]
         }
-        callback.call(T, kValue, k, O)
+        var r = callback.call(T, kValue, k, O)
+        if (r === false) break
+        k++
     }
-    k++
 }
 
-// MHD类的静态方法
+// Mhd类的静态方法
 /**
  * 浏览器-UUID生成器
  * 浏览器环境使用crypto API生成符合RFC4122版本4的UUID，该方法不适合node环境。node环境可参照：https://github.com/kelektiv/node-uuid
@@ -67,8 +72,35 @@ MHD.prototype.forEach = function(callback, thisArg) {
  * @example
  * uuid()  // '7982fcfe-5721-4632-bede-6000885be57d'
  */
-MHD.uuid = () => ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16))
+Mhd.uuid = () => ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16))
 
-// MHD模块
+/**
+ * 给Mhd实例添加实例属性的函数
+ * 写在构造函数外部，以 call 的方式调用私有方法。还可以以symbol的形式写在原型上表示私有方法
+ * @param {Object} m 数组或者伪数组
+ * @this Mhd实例
+ */
+function AddProperty(m) {
+    if (typeof m !== 'object') throw new TypeError('m must be a object!')
+    var len = m.length >>> 0
+
+    this.length = len
+    var i = len - 1
+    while( i >= 0 ) {
+        this[i] = m[i]
+        i--
+    }
+}
+
+/**
+ * 判断传入的对象是不是数组
+ * @param {Any} m 要判断对象
+ * @returns true|false
+ */
+function isArray(m) {
+    return Object.prototype.toString.call(m) === '[object Array]'
+}
+
+// Mhd模块
 // 先整体导出这个类， 后续优化导出为类的实例
-module.exports = MHD
+module.exports = Mhd
