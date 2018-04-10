@@ -28,3 +28,7 @@
 `npm` 也允许开发着给某个版本打 `tag`，比如当版本进行到 `1.0.9` 的时候可以给他打个 `tag` 叫做 `beta`，这个时候用户可以使用 `npm i project-name@beta` 来安装这个版本，这等价于 `npm i project@1.0.9`
 
 使用 `npm dist-tag add <package>@<version> tag` 来给某个版本打 `tag`，默认情况下载 `npm publish` 的时候 `npm` 会给当前版本打一个` tag` 叫做 `latest`，表示这是最新的，可以使用 `npm publish --tag <tag-name>` 来改变默认的 `tag`。
+
+
+## 常见错误
+如果项目中有`.npmrc`文件，请先清空再publish 不然会报错！
