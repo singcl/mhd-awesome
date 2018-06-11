@@ -37,6 +37,7 @@ bufferStream.pipe(res);
 res.attachment(filename);
 // stream流的pipe以及事件监听
 // 这里可以多次pipe处理后再pipe到res。在pipe的过程中可以对数据可以自定义处理和重新组织 解决直接返回的不是我们想要的数据的问题
+// stream.Transform 转换流了解下...
 var stream =  request(url);
 stream
     .on('response', function(response) {
