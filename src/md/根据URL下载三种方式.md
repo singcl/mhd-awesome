@@ -38,6 +38,16 @@ res.attachment(filename);
 // stream流的pipe以及事件监听
 // 这里可以多次pipe处理后再pipe到res。在pipe的过程中可以对数据可以自定义处理和重新组织 解决直接返回的不是我们想要的数据的问题
 // stream.Transform 转换流了解下...
+
+// 更改pipe 流中的相关字段
+// https://stackoverflow.com/questions/25042725/edit-response-headers-before-piping/25044948#25044948
+// 第三个回答
+// https://github.com/request/request/blob/5ba8eb44da7cd639ca21070ea9be20d611b85f66/request.js#L1213
+
+/* rStream.pipefilter = function(response, dest) {
+    dest.setHeader('Content-type', 'application/octet-stream');
+}; */
+
 var stream =  request(url);
 stream
     .on('response', function(response) {
