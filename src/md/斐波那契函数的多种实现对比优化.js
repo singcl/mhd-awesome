@@ -22,7 +22,7 @@ for (let n of gen) {
 
 // 方案一： 以上函数使用递归的方式进行斐波那契数列求和，但效率十分低，很多值会重复求值。
 function fibonacci1(n) {
-    if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
+    // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
     return n <= 2 ? n - 1 : fibonacci1(n - 1) + fibonacci1(n -2);
 }
 
@@ -35,7 +35,7 @@ let fibonacci2 = (function() {
     // 例如我们调用fibonacci(100)，这时候，fibonacci函数在第一次计算的时候会设置memory[100]=xxx，此时数组长度为101，而前面100项会初始化为undefined。
     const memoization = {}
     return function(n) {
-        if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
+        // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
         if (memoization[n] !== undefined) return memoization[n]
         return memoization[n] = (n === 1 || n === 2) ? n - 1 : fibonacci2(n - 1) + fibonacci2(n - 2)
     }
@@ -49,7 +49,7 @@ let fibonacci3 = (function() {
     // 例如我们调用fibonacci(100)，这时候，fibonacci函数在第一次计算的时候会设置memory[100]=xxx，此时数组长度为101，而前面100项会初始化为undefined。
     const memoization = {}
     return function(n) {
-        if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
+        // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
         if(n === 1 || n === 2) {
             return n - 1
         }
@@ -69,7 +69,7 @@ let fibonacci3 = (function() {
 // 斐波那契数列求和除了可以用递归的方法解决，还可以用动态规划的方法解决
 // 效率更高，不需要缓存那么多值，内存占用更少
 function fibonacci4(n) {
-    if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
+    // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
 
     let n1 = 0;
     let n2 = 1;
@@ -91,7 +91,7 @@ function fibonacci4(n) {
 // 方案5 解构赋值
 // 为什么这里解构赋值的效率还不如上面？
 function fibonacci5(n) {
-    if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
+    // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
 
     let a = 0;
     let b = 1;
@@ -104,7 +104,7 @@ function fibonacci5(n) {
 
 // 方案6：尾调用优化！！！
 function fibonacci6(n, n1, n2) {
-    if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
+    // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
     if(n <= 1) {
         return n2
     }
