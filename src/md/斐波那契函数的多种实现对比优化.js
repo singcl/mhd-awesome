@@ -102,6 +102,23 @@ function fibonacci5(n) {
     return a;
 }
 
+// 方案5-1 不用解构赋值
+// 为什么这里不用解构赋值的效率明显上升
+function fibonacci5_1(n) {
+    // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
+
+    let a = 0;
+    let b = 1;
+    let i = 1;
+    let sum = 1;
+    while(i++ < n) {
+        sum = a + b;
+        a = b;
+        b = sum;
+    }
+    return a;
+}
+
 // 方案6：尾调用优化！！！
 function fibonacci6(n, n1, n2) {
     // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
@@ -126,8 +143,16 @@ function speed(callback, str, ...args) {
     console.timeEnd(str)
 }
 
-speed(fibonacci2, 'fibonacci2', 10000 )
-speed(fibonacci3, 'fibonacci3', 10000 )
-speed(fibonacci4, 'fibonacci4', 10000 )
-speed(fibonacci5, 'fibonacci5', 10000 )
-speed(fibonacci6, 'fibonacci6', 10000, 0 , 1 )
+speed(fibonacci2, 'fibonacci2    :', 10000 )
+speed(fibonacci3, 'fibonacci3    :', 10000 )
+speed(fibonacci4, 'fibonacci4    :', 10000 )
+speed(fibonacci5, 'fibonacci5    :', 10000 )
+speed(fibonacci5_1, 'fibonacci5_1  :', 10000 )
+speed(fibonacci6, 'fibonacci6    :', 10000, 0 , 1 )
+
+// fibonacci2    :: 2.190ms
+// fibonacci3    :: 1.015ms
+// fibonacci4    :: 0.562ms
+// fibonacci5    :: 3.386ms
+// fibonacci5_1  :: 0.340ms
+// fibonacci6    :: 0.278ms
