@@ -54,6 +54,12 @@ var html = `
     <html>
     <head>
         <meta charset='utf-8' />
+        <style>
+            th,td {
+                text-align: center;
+                width: auto;
+            }
+        </style>
     </head>
     <body>
         <table>
