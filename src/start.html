@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS变量</title>
+    <style>
+        :root {
+            --c: #ddd;
+            /* background-color: var(--c); */
+        }
+
+        .heart {
+            position: fixed;
+            left: 18vw;
+            top: 16vh;
+            width: 13em;
+            height: 11em;
+        }
+
+        .heart span {
+            display: inline-block;
+            vertical-align: top;
+            position: relative;
+            top: var(--t);
+            width: 1em;
+            height: var(--h);
+            background-color: var(--c);
+            border-radius: 0.5em;
+            animation: beating 2s ease-in infinite;
+        }
+
+        .heart span:nth-child(1),
+        .heart span:nth-child(9) {
+            --c: orangered;
+            --h: 3em;
+            --t: 2.2em;
+        }
+
+        .heart span:nth-child(2),
+        .heart span:nth-child(8) {
+            --c: gold;
+            --h: 6em;
+            --t: .6em;
+        }
+
+        .heart span:nth-child(3),
+        .heart span:nth-child(7) {
+            --c: limegreen;
+            --h: 8em;
+            --t: 0em;
+        }
+
+        .heart span:nth-child(4),
+        .heart span:nth-child(6) {
+            --c: dodgerblue;
+            --h: 9em;
+            --t: .8em;
+        }
+
+        .heart span:nth-child(5) {
+            --c: mediumpurple;
+            --h: 9.4em;
+            --t: 1.6em;
+        }
+
+       @keyframes beating {
+           0% {opacity: 1; transform: scale(1) rotate(0deg)}
+           40% {opacity: .75; transform: scale(.8) rotate(0deg)}
+           50% {opacity: .5; transform: scale(1) rotate(0deg)}
+           70% {opacity: .75; transform: scale(1.1) rotate(0deg)}
+           85% {opacity: .75; transform: scale(1.1) rotate(0deg)}
+           100% {opacity: 1; transform: scale(1) rotate(0deg)}
+       }
+
+    </style>
+</head>
+<body>
+    <div class="heart">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</body>
+</html>
