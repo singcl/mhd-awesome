@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>点击水波效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {}
+
+        .wave {
+            position: relative;
+            float: left;
+            width: 50%;
+            height: 420px;
+        }
+
+        .wave a {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: inline-block;
+            width: 120px;
+            height: 50px;
+            margin-left: -60px;
+            margin-top: -25px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 5px;
+            color: red;
+            font-size: 16px;
+            cursor: pointer;
+            /*overflow:hidden;*/
+
+        }
+
+        #wave1 {
+            background-color: blue;
+        }
+
+        #wave1 a {
+            background-color: pink;
+        }
+
+        #wave1 a:after {
+
+            content: "";
+            display: block;
+            position: absolute;
+            left: -40px;
+            top: -75px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 1s;
+        }
+
+        #wave1 a:active:after {
+
+            width: 0;
+            height: 0;
+            left: 60px;
+            top: 25px;
+            opacity: 1;
+            transition-duration: 0s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wave" id="wave1">
+        <a>点击</a>
+    </div>
+</body>
+
+</html>
