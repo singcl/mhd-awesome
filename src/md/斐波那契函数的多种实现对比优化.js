@@ -7,13 +7,14 @@ function isPositiveInteger(n) {
 // 生成器函数方案
 function* fibonacci() {
     let [pre, curr] = [0, 1]
-    for(;;) {
+    for (;;) {
         // "never" 禁止在语句末尾使用分号 (除了消除以 [、(、/、+ 或 - 开始的语句的歧义)
-        yield pre; // 这里分号是必须的，或者写在下一行开始。分号自动插入规则(ASI)参考: http://eslint.cn/docs/rules/semi
-        [pre, curr] = [curr, pre + curr]
+        yield pre // 这里分号是必须的，或者写在下一行开始。分号自动插入规则(ASI)参考: http://eslint.cn/docs/rules/semi
+        ;[pre, curr] = [curr, pre + curr]
     }
 }
 
+// 这里可以封装成一个接受参数n函数
 const gen = fibonacci()
 for (let n of gen) {
     if (n > 1000) break
@@ -23,7 +24,7 @@ for (let n of gen) {
 // 方案一： 以上函数使用递归的方式进行斐波那契数列求和，但效率十分低，很多值会重复求值。
 function fibonacci1(n) {
     // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
-    return n <= 2 ? n - 1 : fibonacci1(n - 1) + fibonacci1(n -2);
+    return n <= 2 ? n - 1 : fibonacci1(n - 1) + fibonacci1(n - 2)
 }
 
 // 方案二：
@@ -37,7 +38,8 @@ let fibonacci2 = (function() {
     return function(n) {
         // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
         if (memoization[n] !== undefined) return memoization[n]
-        return memoization[n] = (n === 1 || n === 2) ? n - 1 : fibonacci2(n - 1) + fibonacci2(n - 2)
+        return (memoization[n] =
+            n === 1 || n === 2 ? n - 1 : fibonacci2(n - 1) + fibonacci2(n - 2))
     }
 })()
 
@@ -50,18 +52,18 @@ let fibonacci3 = (function() {
     const memoization = {}
     return function(n) {
         // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
-        if(n === 1 || n === 2) {
+        if (n === 1 || n === 2) {
             return n - 1
         }
 
-        if(memoization[n - 2] === undefined) {
+        if (memoization[n - 2] === undefined) {
             memoization[n - 2] = fibonacci(n - 2)
         }
 
-        if(memoization[n - 1] === undefined) {
+        if (memoization[n - 1] === undefined) {
             memoization[n - 1] = fibonacci(n - 1)
         }
-        return memoization[n] = memoization[n - 1] + memoization[n - 2]
+        return (memoization[n] = memoization[n - 1] + memoization[n - 2])
     }
 })()
 
@@ -71,15 +73,15 @@ let fibonacci3 = (function() {
 function fibonacci4(n) {
     // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
 
-    let n1 = 0;
-    let n2 = 1;
-    let sum = 1;
+    let n1 = 0
+    let n2 = 1
+    let sum = 1
 
-    if(n === 1 || n === 2) {
+    if (n === 1 || n === 2) {
         return n - 1
     }
 
-    for(let i = 3; i <= n; i++) {
+    for (let i = 3; i <= n; i++) {
         sum = n1 + n2
         n1 = n2
         n2 = sum
@@ -93,13 +95,13 @@ function fibonacci4(n) {
 function fibonacci5(n) {
     // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
 
-    let a = 0;
-    let b = 1;
-    let i = 1;
-    while(i++ < n) {
-        [a, b] = [b, a + b];
+    let a = 0
+    let b = 1
+    let i = 1
+    while (i++ < n) {
+        ;[a, b] = [b, a + b]
     }
-    return a;
+    return a
 }
 
 // 方案5-1 不用解构赋值
@@ -107,27 +109,26 @@ function fibonacci5(n) {
 function fibonacci5_1(n) {
     // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
 
-    let a = 0;
-    let b = 1;
-    let i = 1;
-    let sum = 1;
-    while(i++ < n) {
-        sum = a + b;
-        a = b;
-        b = sum;
+    let a = 0
+    let b = 1
+    let i = 1
+    let sum = 1
+    while (i++ < n) {
+        sum = a + b
+        a = b
+        b = sum
     }
-    return a;
+    return a
 }
 
 // 方案6：尾调用优化！！！
 function fibonacci6(n, n1, n2) {
     // if (!isPositiveInteger(n)) return '参数必须为大于0的整数！'
-    if(n <= 1) {
+    if (n <= 1) {
         return n2
     }
     return fibonacci6(n - 1, n2, n1 + n2)
 }
-
 
 console.log(fibonacci6(1, 0, 1))
 
@@ -143,12 +144,12 @@ function speed(callback, str, ...args) {
     console.timeEnd(str)
 }
 
-speed(fibonacci2, 'fibonacci2    :', 10000 )
-speed(fibonacci3, 'fibonacci3    :', 10000 )
-speed(fibonacci4, 'fibonacci4    :', 10000 )
-speed(fibonacci5, 'fibonacci5    :', 10000 )
-speed(fibonacci5_1, 'fibonacci5_1  :', 10000 )
-speed(fibonacci6, 'fibonacci6    :', 10000, 0 , 1 )
+speed(fibonacci2, "fibonacci2    :", 10000)
+speed(fibonacci3, "fibonacci3    :", 10000)
+speed(fibonacci4, "fibonacci4    :", 10000)
+speed(fibonacci5, "fibonacci5    :", 10000)
+speed(fibonacci5_1, "fibonacci5_1  :", 10000)
+speed(fibonacci6, "fibonacci6    :", 10000, 0, 1)
 
 // fibonacci2    :: 2.190ms
 // fibonacci3    :: 1.015ms
