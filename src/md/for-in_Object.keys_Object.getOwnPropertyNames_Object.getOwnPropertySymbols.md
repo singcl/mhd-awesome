@@ -2,11 +2,16 @@
 
 ## for in
 
+要很好的掌握`for-in`的使用你只需要记住下面一句话：
+
 以**特定顺序**遍历一个**对象及其原型链**的所有**可枚举属性（但是不包括 Symbol）**。
+
+我们先上代码，再一一解释。
 
 ```js
 const sym = Symbol("key");
 
+// 创建一个对象
 const obj = {
     key: 23,
     name: "singcl",
