@@ -57,11 +57,11 @@ console.log(obj.propertyIsEnumerable(sym)); // true
 
 现在我们就来一样解释:
 
-#### 特定顺序
+#### 1.特定顺序
 
-我们在`obj`上添加的属性的顺序和我们最终`for-in`循环输出的结果的顺序并不一致，那么`for-in`遍历到底是- 按什么顺序遍历的呢？
+我们在`obj`上添加的属性的顺序和我们最终`for-in`循环输出的结果的顺序并不一致，那么`for-in`遍历到底是按什么顺序遍历的呢？
 
-其实是按一下顺序遍历的：
+其实是按以下顺序遍历的：
 
 1. 首先遍历所有数值键，按照数值升序排列。
 2. 其次遍历所有字符串键，按照加入时间升序排列。
@@ -69,11 +69,11 @@ console.log(obj.propertyIsEnumerable(sym)); // true
 
 对照上面的代码看看是不是呢。
 
-#### 对象及其原型链
+#### 2.对象及其原型链
 
 `for-in`循环遍历对象时候会遍历对象以及对象原型链上的属性。上面`protoKey`是定义在对象的原型上而不是对象本身上。但是依然被`for-in`遍历到了。
 
-#### 可枚举属性
+#### 3.可枚举属性
 
 -   `water`是我们使用`Object.defineProperty()`定义在 obj 上的一个不可枚举属性
 -   `people`是我们使用`Object.defineProperty()`定义在 obj 上的一个可枚举属性
@@ -94,7 +94,7 @@ console.log(obj.propertyIsEnumerable("people")); // true
 
 obj 上`key, name, action`等通过字面量方式添加的属性默认是可枚举的。
 
-#### 但是不包括 Symbol
+#### 4.但是不包括 Symbol
 
 你可能有疑问: obj 上 `Symbol`类型的属性`sym` 也没有被遍历到，是不是因为它是不可枚举属性？
 那么我们验证下：
