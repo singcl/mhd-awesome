@@ -259,3 +259,21 @@ console.log(cat.constructor)                // [Function: Cat]
 8. 堪称完美的继承方式
 
 推荐指数：🔥🔥🔥🔥🔥.
+
+#### 6. Object.create继承
+
+```js
+
+function Dog() {
+  Animal.apply(this, arguments);
+}
+
+Dog.prototype = Object.create(Animal.prototype, {
+  constructor: {
+    value: Dog,
+    writable: true,
+    configurable: true,
+    enumerable: true
+  }
+});
+```
