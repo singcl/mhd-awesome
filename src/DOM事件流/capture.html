@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./highlight/styles/monokai.css">
+    <title>理解事件流</title>
+</head>
+
+<body>
+    <h3>
+        <div>在标准事件流中：事件总是先 捕获阶段 -> 接着 -> 冒泡阶段。 也就是说在标准事件流中事件总是会经历这两个阶段。</div>
+        <div>不同在于：事件监听器到底监听的是捕获阶段(监听回调会在捕获阶段执行(useCature: true))还是冒泡阶段(监听回调会在冒泡阶段执行(useCature: false))</div>
+        <div>监听捕获阶段的事件回调不会再冒泡阶段执行，反之， 监听冒泡阶段的事件回调也不会再捕获阶段 执行</div>
+        <div>除非同时既监听了捕获阶段 又 监听了 冒泡阶段 （如下面的示例）</div>
+    </h3>
+    <div id="div2">
+        <div id="div1" style="color: #fff; background-color: green; display: inline-block">点我</div>
+    </div>
+
+    <pre>
+        <code style="font-size: 16px;">
+            var div2 = document.getElementById('div2');
+            
+            var div1 = document.getElementById('div1');
+            
+            div1.addEventListener('click', function (event) { console.log("A"); }, true);
+            
+            div2.addEventListener('click', function (event) { console.log("B"); });
+            
+            div1.addEventListener('click', function (event) { console.log("C"); }, false);
+            
+            div2.addEventListener('click', function (event) { console.log("D"); }, true);
+        </code>
+    </pre>
+</body>
+
+</html>
+<!-- https://highlightjs.org/ -->
+<script src="./highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+    var div2 = document.getElementById('div2');
+
+    var div1 = document.getElementById('div1');
+
+    div1.addEventListener('click', function (event) { console.log("A"); }, true);
+
+    div2.addEventListener('click', function (event) { console.log("B"); });
+
+    div1.addEventListener('click', function (event) { console.log("C"); }, false);
+
+    div2.addEventListener('click', function (event) { console.log("D"); }, true);
+</script>
