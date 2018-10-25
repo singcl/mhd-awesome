@@ -1,5 +1,6 @@
 /**
  * 导出QQ群所有成员 excel
+ * 地址：https://qun.qq.com/member.html
  * @authors singcl (24661881@qq.com)
  * @date    2018-10-25 23:45
  * @version v0.0.1
@@ -23,8 +24,6 @@ var html = `
     </body>
     </html>
 `
-
-// console.log(html)
 
 var blobExcel = new Blob([html], {
     type: "application/vnd.ms-excel"
