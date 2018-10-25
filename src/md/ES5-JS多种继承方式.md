@@ -226,6 +226,8 @@ function Cat(color, name) {
     Cat.prototype = new Super()
     // 修复Cat构造器指向
     Cat.prototype.constructor = Cat
+    // 修改Cat构造函数本身的原型链 默认是：Cat.__proto__ === Function.prototype
+    Object.setPrototypeOf(Cat, Animal) // 这样写也可以：Cat.__proto__ = Animal
     // 自己的原型属性/方法
     Cat.prototype.climb = function(arg) {
         console.log('快看！快看！颜色为' + this.color + '的' + this.name + '正在爬' + arg)
