@@ -49,10 +49,23 @@ export default {
   @see: https://www.npmjs.com/package/less-loader
 5. 后缀名.less/scss/styl可以省略
 */
+
+
+/*
+npm i bootstrap -S
+~从node_modules中加载scss
+ */
 @import "~bootstrap/scss/bootstrap.scss";
 </style>
 
 <style lang="stylus">
+/*
+webpack.base.conf.js
+alias: {
+    common: resolve("src/common")
+}
+从 reslove/alias中加载stylus
+*/
 @import "~common/stylus/border-1px/index.styl"
 </style>
 
