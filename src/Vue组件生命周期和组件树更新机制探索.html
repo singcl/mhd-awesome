@@ -11,7 +11,7 @@
         <div id="app">
             <input v-model="message" type="text" />
             <h1>{{ message }}</h1>
-            <my-child :msg="msgChild"></my-child>
+            <my-child :msg="message"></my-child>
         </div>
     </body>
     <script>
@@ -22,7 +22,7 @@
                 };
             },
             props: ["msg"],
-            template: `<div>{{child}}{{msg}}</div>`,
+            template: `<div id="child">{{child}}{{msg}}</div>`,
             beforeCreate: function() {
                 console.group("------Child beforeCreate创建前状态------");
                 console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
