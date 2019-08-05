@@ -1,0 +1,15 @@
+windows10 提示激活即将过期解决办法：
+
+1. 管理员身份打开powershell ，依次输入：
+
+```sh
+PS C:\Windows\system32> slmgr /ipk VK7JG-NPHTM-C97JM-9MPGT-3V66T
+PS C:\Windows\system32> slmgr /skms kms.xspace.in
+PS C:\Windows\system32> slmgr /ato
+
+```
+
+2. 再次查看激活时间
+```sh
+PS C:\Windows\system32> slmgr.vbs -xpr
+```
