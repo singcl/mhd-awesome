@@ -6,9 +6,9 @@
     <meta content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no"
           name="viewport">
     <style>
-        .HeartAnimation {
+        .heart-animation {
             position: absolute;
-            background-image: url(web_heart_animation_edge.png);
+            background-image: url("./web_heart_animation_edge.png");
             background-position: left;
             background-repeat: no-repeat;
             /*background-size: 2900%;*/
@@ -30,7 +30,7 @@
 
         }
 
-        /*.HeartAnimation :hover {*/
+        /*.heart-animation :hover {*/
         /*background-position: 3.571428571428571%*/
         /*}*/
 
@@ -46,12 +46,11 @@
     </style>
 </head>
 <body>
-<div class="HeartAnimation"></div>
+<div class="heart-animation"></div>
 <script src="../lib/jquery-3.2.1.js"></script>
 <script>
-    $('.HeartAnimation').click(function () {
-        var _this = $(this)
-        _this.hasClass('like-active') ? _this.removeClass('like-active') : _this.addClass('like-active')
+    $('.heart-animation').click(function () {
+        $(this).toggleClass("like-active");
     })
 </script>
 </body>
