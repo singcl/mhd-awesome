@@ -32,3 +32,15 @@
 
 ## 常见错误
 如果项目中有`.npmrc`文件，请先清空再publish 不然会报错！
+
+```sh
+npm ERR! code E404
+npm ERR! 404 Not Found - PUT https://registry.npmjs.org/@singcl%2fthrottle-debounce - Not found
+npm ERR! 404 
+npm ERR! 404  '@singcl/throttle-debounce@1.1.1' is not in the npm registry.
+npm ERR! 404 You should bug the author to publish it (or use the name yourself!)
+npm ERR! 404 
+npm ERR! 404 Note that you can also install from a
+npm ERR! 404 tarball, folder, http url, or git url.
+```
+方案：切回npm官方源，不要用淘宝源`nrm ls`  `nrm use npm`;再走上面3，4流程。
