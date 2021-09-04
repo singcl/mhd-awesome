@@ -1,190 +1,161 @@
-/*
- * anchor menu plugin 1.0   2021-09-03 by singcl
- * 说明：自动根据标签（h3,h4）生成博客目录
- */
-(function ($) {
-    var Menu = (function () {
-        /**
-         * 插件实例化部分，初始化时调用的代码可以放这里
-         * @param element 传入jq对象的选择器，如 $("#J_plugin").plugin() ,其中 $("#J_plugin") 即是 element
-         * @param options 插件的一些参数神马的
-         * @constructor
-         */
-        var Plugin = function (element, options) {
-            //将dom jquery对象赋值给插件，方便后续调用
-            this.$element = $(element);
+/* ========================================================================
+ * anchor menu v0.1
+ *
+ * ========================================================================
+ * Copyright 2021-2021
+ * Licensed under MIT
+ * ======================================================================== */
++function ($) {
+    'use strict';
 
-            //将插件的默认参数及用户定义的参数合并到一个新的obj里
-            this.settings = $.extend(
-                {},
-                $.fn.autoMenu.defaults,
-                typeof options === "object" && options
-            );
-            //如果将参数设置在dom的自定义属性里，也可以这样写
-            //this.settings = $.extend({}, $.fn.plugin.defaults, this.$element.data(), options);
+    var DISALLOWED_ATTRIBUTES = ['sanitize', 'whiteList', 'sanitizeFn'];
 
-            this.init();
-        };
+    var uriAttrs = [
+        'background',
+        'cite',
+        'href',
+        'itemtype',
+        'longdesc',
+        'poster',
+        'src',
+        'xlink:href'
+    ]
 
-        /**
-         * 将插件所有函数放在prototype的大对象里
-         * 插件的公共方法，相当于接口函数，用于给外部调用
-         * @type {{}}
-         */
-        Plugin.prototype = {
-            init: function () {
-                var opts = this.settings;
+    var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i
 
-                //console.log(opts)
-                this.$element.html(this.createHtml());
-                this.setActive();
-                this.bindEvent();
-            },
-            createHtml: function () {
-                var that = this;
-                var opts = that.settings;
-                var width = typeof opts.width === "number" && opts.width;
-                var height = typeof opts.height === "number" && opts.height;
-                var padding = typeof opts.padding === "number" && opts.padding;
-                var source = typeof opts.source === "string" && opts.source;
-
-                that.$element.width(width + padding * 2);
-                var html =
-                    '<ul style="height: ' +
-                    height +
-                    "px;padding:" +
-                    padding +
-                    'px">';
-                var num = 0;
-                $(source)
-                    .find("*")
-                    .each(function () {
-                        var _this = $(this);
-                        if (
-                            _this.get(0).tagName == opts.levelOne.toUpperCase()
-                        ) {
-                            _this.attr("id", num);
-                            var nodetext = that.handleTxt(_this.html());
-                            html +=
-                                '<li name="' +
-                                num +
-                                '"><a href="#' +
-                                num +
-                                '">' +
-                                nodetext +
-                                "</a></li>";
-                            num++;
-                        } else if (
-                            _this.get(0).tagName == opts.levelTwo.toUpperCase()
-                        ) {
-                            _this.attr("id", num);
-                            var nodetext = that.handleTxt(_this.html());
-                            html +=
-                                '<li class="sub" name="' +
-                                num +
-                                '"><a href="#' +
-                                num +
-                                '">' +
-                                nodetext +
-                                "</a></li>";
-                            num++;
-                        }
-                    });
-                //html +=
-                // '</ul><a href="javascript:void(0);" class="btn-box">' + '<span class="icon-minus-sign"></span>' + "</a>";
-                return html;
-            },
-            handleTxt: function (txt) {
-                //正则表达式去除HTML的标签
-                return txt.replace(/<\/?[^>]+>/g, "").trim();
-            },
-            setActive: function () {
-                var $el = this.$element,
-                    opts = this.settings,
-                    items = opts.levelOne + "," + opts.levelTwo,
-                    $items = $(items),
-                    offTop = opts.offTop,
-                    top = $(document).scrollTop(),
-                    currentId;
-                if ($(document).scrollTop() == 0) {
-                    //初始化active
-                    $el.find("li")
-                        .removeClass("active")
-                        .eq(0)
-                        .addClass("active");
-                    return;
-                }
-                $items.each(function () {
-                    var m = $(this),
-                        itemTop = m.offset().top;
-                    if (top > itemTop - offTop) {
-                        currentId = m.attr("id");
-                    } else {
-                        return false;
-                    }
-                });
-                var currentLink = $el.find(".active");
-                if (currentId && currentLink.attr("name") != currentId) {
-                    currentLink.removeClass("active");
-                    $el.find("[name=" + currentId + "]").addClass("active");
-                }
-            },
-            bindEvent: function () {
-                var _this = this;
-                $(window).scroll(function () {
-                    _this.setActive();
-                });
-                _this.$element.on("click", ".btn-box", function () {
-                    if ($(this).find("span").hasClass("icon-minus-sign")) {
-                        $(this)
-                            .find("span")
-                            .removeClass("icon-minus-sign")
-                            .addClass("icon-plus-sign");
-                        _this.$element.find("ul").fadeOut();
-                    } else {
-                        $(this)
-                            .find("span")
-                            .removeClass("icon-plus-sign")
-                            .addClass("icon-minus-sign");
-                        _this.$element.find("ul").fadeIn();
-                    }
-                });
-            },
-        };
-
-        return Plugin;
-    })();
+    var DefaultWhitelist = {
+        // Global attributes allowed on any supplied element below.
+        '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
+        a: ['target', 'href', 'title', 'rel'],
+        area: [],
+        b: [],
+        br: [],
+        col: [],
+        code: [],
+        div: [],
+        em: [],
+        hr: [],
+        h1: [],
+        h2: [],
+        h3: [],
+        h4: [],
+        h5: [],
+        h6: [],
+        i: [],
+        img: ['src', 'alt', 'title', 'width', 'height'],
+        li: [],
+        ol: [],
+        p: [],
+        pre: [],
+        s: [],
+        small: [],
+        span: [],
+        sub: [],
+        sup: [],
+        strong: [],
+        u: [],
+        ul: []
+    }
 
     /**
-     * 这里是将Plugin对象 转为jq插件的形式进行调用
-     * 定义一个插件 plugin
+   * A pattern that recognizes a commonly useful subset of URLs that are safe.
+   *
+   * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+   */
+    var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^&:/?#]*(?:[/?#]|$))/gi
+
+    /**
+     * A pattern that matches safe data URLs. Only matches image, video and audio types.
+     *
+     * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
      */
-    $.fn.autoMenu = function (options) {
-        return this.each(function () {
-            var $el = $(this),
-                menu = $el.data("autoMenu"),
-                option = $.extend(
-                    {},
-                    $.fn.autoMenu.defaults,
-                    typeof options === "object" && options
-                );
-            if (!menu) {
-                //将实例化后的插件缓存在dom结构里（内存里）
-                $el.data("autoMenu", new Menu(this, option));
+    var DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[a-z0-9+/]+=*$/i
+
+    function allowedAttribute(attr, allowedAttributeList) {
+        var attrName = attr.nodeName.toLowerCase()
+
+        if ($.inArray(attrName, allowedAttributeList) !== -1) {
+            if ($.inArray(attrName, uriAttrs) !== -1) {
+                return Boolean(attr.nodeValue.match(SAFE_URL_PATTERN) || attr.nodeValue.match(DATA_URL_PATTERN))
             }
 
-            /**
-             * 如果插件的参数是一个字符串，则 调用 插件的 字符串方法。
-             * 如 $('#id').plugin('doSomething') 则实际调用的是 $('#id).plugin.doSomething();
-             */
-            if ($.type(options) === "string") menu[option]();
-        });
-    };
+            return true
+        }
 
-    /**
-     * 插件的默认值
-     */
-    $.fn.autoMenu.defaults = {
+        var regExp = $(allowedAttributeList).filter(function (index, value) {
+            return value instanceof RegExp
+        })
+
+        // Check if a regular expression validates the attribute.
+        for (var i = 0, l = regExp.length; i < l; i++) {
+            if (attrName.match(regExp[i])) {
+                return true
+            }
+        }
+
+        return false
+    }
+
+    function sanitizeHtml(unsafeHtml, whiteList, sanitizeFn) {
+        if (unsafeHtml.length === 0) {
+            return unsafeHtml
+        }
+
+        if (sanitizeFn && typeof sanitizeFn === 'function') {
+            return sanitizeFn(unsafeHtml)
+        }
+
+        // IE 8 and below don't support createHTMLDocument
+        if (!document.implementation || !document.implementation.createHTMLDocument) {
+            return unsafeHtml
+        }
+
+        var createdDocument = document.implementation.createHTMLDocument('sanitization')
+        createdDocument.body.innerHTML = unsafeHtml
+
+        var whitelistKeys = $.map(whiteList, function (el, i) { return i })
+        var elements = $(createdDocument.body).find('*')
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+            var el = elements[i]
+            var elName = el.nodeName.toLowerCase()
+
+            if ($.inArray(elName, whitelistKeys) === -1) {
+                el.parentNode.removeChild(el)
+
+                continue
+            }
+
+            var attributeList = $.map(el.attributes, function (el) { return el })
+            var whitelistedAttributes = [].concat(whiteList['*'] || [], whiteList[elName] || [])
+
+            for (var j = 0, len2 = attributeList.length; j < len2; j++) {
+                if (!allowedAttribute(attributeList[j], whitelistedAttributes)) {
+                    el.removeAttribute(attributeList[j].nodeName)
+                }
+            }
+        }
+
+        return createdDocument.body.innerHTML
+    }
+
+    // ANCHOR MENU PUBLIC CLASS DEFINITION
+    // ===============================
+    var AnchorMenu = function (element, options) {
+        this.type = null
+        this.options = null
+        this.enabled = null
+        this.timeout = null
+        this.$element = null
+
+        this.init('anchorMenu', element, options);
+    }
+
+    AnchorMenu.VERSION = '0.0.1';
+
+    AnchorMenu.TRANSITION_DURATION = 150;
+
+    AnchorMenu.DEFAULTS = {
         source: "*", // 源文档
         levelOne: "h3", //一级标题
         levelTwo: "h4", //二级标题（暂不支持更多级）
@@ -192,16 +163,49 @@
         height: 400, //容器高度
         padding: 20, //内部间距
         offTop: 100, //滚动切换导航时离顶部的距离
+
+        delay: 0,
+        // delay: {show: number; hide: number};
+        template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+        sanitize: true,
+        sanitizeFn: null,
+        whiteList: DefaultWhitelist
     };
 
-    /**
-     * 优雅处： 通过data-xxx 的方式 实例化插件。
-     * 这样的话 在页面上就不需要显示调用了。
-     * 可以查看bootstrap 里面的JS插件写法
-     */
-    $(function () {
-        if ($("[data-autoMenu]").length > 0) {
-            new Menu($("[data-autoMenu]"));
+    AnchorMenu.prototype.init = function (type, element, options) {
+        this.enabled = true;
+        this.type = type;
+        this.$element = $(element);
+        this.options = this.getDefaults(options);
+    }
+
+    AnchorMenu.prototype.getDefaults = function () {
+        return AnchorMenu.DEFAULTS;
+    }
+
+    AnchorMenu.prototype.getOptions = function (options) {
+        var dataAttributes = this.$element.data();
+
+        for (var dataAttr in dataAttributes) {
+            if (dataAttributes.hasOwnProperty(dataAttr) && $.inArray(dataAttr, DISALLOWED_ATTRIBUTES) !== -1) {
+                delete dataAttributes[dataAttr]
+            }
         }
-    });
-})(jQuery);
+
+        options = $.extend({}, this.getDefaults(), dataAttributes, options);
+
+        if (options.delay && typeof options.delay == 'number') {
+            options.delay = {
+                show: options.delay,
+                hide: options.delay
+            }
+        }
+
+        if (options.sanitize) {
+            options.template = sanitizeHtml(options.template, options.whiteList, options.sanitizeFn)
+        }
+
+        return options;
+    }
+
+}(jQuery);
