@@ -164,9 +164,11 @@
         padding: 20, //内部间距
         offTop: 100, //滚动切换导航时离顶部的距离
 
+        //
+        selector: false,
         delay: 0,
         // delay: {show: number; hide: number};
-        template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+        template: '<div class="anchor-menu" role="anchor-menu"><div class="anchor-menu-arrow"></div><div class="anchor-menu-inner"></div></div>',
         sanitize: true,
         sanitizeFn: null,
         whiteList: DefaultWhitelist
@@ -177,6 +179,11 @@
         this.type = type;
         this.$element = $(element);
         this.options = this.getDefaults(options);
+
+
+        if (this.$element[0] instanceof document.constructor && !this.options.selector) {
+            throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!')
+        }
     }
 
     AnchorMenu.prototype.getDefaults = function () {
@@ -206,6 +213,16 @@
         }
 
         return options;
+    }
+
+    AnchorMenu.prototype.menu = function () {
+        if (!this.$menu) {
+            this.$menu = $(this.options.template)
+            if (this.$menu.length != 1) {
+                throw new Error(this.type + ' `template` option must consist of exactly 1 top-level element!')
+            }
+        }
+        return this.$menu
     }
 
 }(jQuery);
