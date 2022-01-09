@@ -25,5 +25,5 @@ docker build --tag express:lts-s .
 **运行**
 
 ```bash
-docker run --name express3000 -p 3000:3000 express:lts-s
+docker run --detach --name express3000 -p 3000:3000 express:lts-s
 ```
