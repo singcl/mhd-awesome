@@ -19,11 +19,22 @@ type PartPartial<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 // 使T中部分指定字段必选
 type PartRequired<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
 
+// 模板字符串类型
+type AddString<T> = {
+    [P in keyof T as `sing_${Capitalize<P & string>}`]: T[P];
+};
+// 模板字符串类型
+type AddString2<T> = {
+    [P in keyof T as Capitalize<`sing_${P & string}`>]: T[P];
+};
+
 //
 let x: GetRequired<My>["a"];
 let x2: GetPartial<My>["b"];
 let x3: PartPartial<My, "a">["a"];
 let x4: PartRequired<My, "b">["b"];
+let x5: AddString<My>["sing_A"];
+let x6: AddString2<My>["Sing_a"];
 
 // 提取数组元素类型
 type UnArray<T> = T extends Array<infer U> ? U : any;
